@@ -1,0 +1,23 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "promptwire-subscribe.html",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "subscribe.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/subscribe",
+            "dest": "/subscribe.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/promptwire-subscribe.html"
+        }
+    ]
+}

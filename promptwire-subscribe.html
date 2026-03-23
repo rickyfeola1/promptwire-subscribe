@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptWire — Free Weekly AI Newsletter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,700;1,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #1292eb;
+            --blue-dim: rgba(18,146,235,0.1);
+            --blue-glow: rgba(18,146,235,0.22);
+            --blue-hover: #0d7fd4;
+            --white: #ffffff;
+            --gray-50: #f8f9fa;
+            --gray-100: #f1f3f5;
+            --gray-200: #e9ecef;
+            --gray-400: #adb5bd;
+            --gray-500: #6c757d;
+            --gray-700: #343a40;
+            --gray-900: #0d1117;
+            --green: #10b981;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #171717 0%, #1292eb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 44px 44px;
+            pointer-events: none;
+        }
+
+        /* ---- CARD ---- */
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 48px 44px;
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+            animation: fadeUp 0.5s ease both;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), #38bdf8);
+            border-radius: 24px 24px 0 0;
+        }
+
+        /* ---- HEADER ---- */
+        .card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(16,185,129,0.1);
+            border: 1px solid rgba(16,185,129,0.2);
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-dot {
+            width: 6px; height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        .card h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(36px, 6vw, 52px);
+            font-weight: 800;
+            line-height: 1.0;
+            color: var(--gray-900);
+            margin-bottom: 14px;
+        }
+
+        .card h1 span { color: var(--blue); }
+
+        .card-desc {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        /* ---- BULLETS ---- */
+        .bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-bottom: 28px;
+            padding: 20px;
+            background: var(--gray-50);
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .bullet {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        .bullet-icon {
+            font-size: 15px;
+            flex-shrink: 0;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ---- FORM ---- */
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: var(--gray-900);
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 10px;
+            background: var(--white);
+        }
+
+        .form-input:focus { border-color: var(--blue); }
+        .form-input.error { border-color: #dc2626; }
+
+        .form-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.2px;
+        }
+
+        .form-btn:hover {
+            background: var(--blue-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px var(--blue-glow);
+        }
+
+        .form-trust {
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--gray-400);
+            text-align: center;
+        }
+
+        /* ---- TESTIMONIAL ---- */
+        .testimonial {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .testimonial-text {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.65;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .author-avatar {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: #dbeafe;
+            color: #1d4ed8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .author-name { font-size: 12px; font-weight: 600; color: var(--gray-700); }
+        .author-role { font-size: 11px; color: var(--gray-400); }
+
+        /* ---- ANIMATIONS ---- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        @media (max-width: 480px) {
+            .card { padding: 36px 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <div class="card-badge">
+            <span class="badge-dot"></span>
+            Free every Thursday
+        </div>
+
+        <h1>The AI newsletter<br>that <span>actually works.</span></h1>
+
+        <p class="card-desc">PromptWire lands every Thursday with one ready-to-run AI automation, the tools worth knowing about, and plain-English breakdowns of what's shifting in AI.</p>
+
+        <div class="bullets">
+            <div class="bullet"><span class="bullet-icon">⚡</span>One AI automation every Thursday — copy it, run it that day</div>
+            <div class="bullet"><span class="bullet-icon">🔧</span>New tools covered weekly — honest takes, no hype</div>
+            <div class="bullet"><span class="bullet-icon">📡</span>AI news briefings — what matters and what to do about it</div>
+            <div class="bullet"><span class="bullet-icon">📚</span>Growing prompt library — free and Pro tiers</div>
+        </div>
+
+        <div id="formWrap">
+            <input type="email" class="form-input" id="heroEmail" placeholder="your@email.com">
+            <button class="form-btn" id="heroBtn" onclick="subscribe()">
+                Join Free — Get This Week's Issue →
+            </button>
+            <p class="form-trust">✓ Free forever &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe anytime</p>
+        </div>
+
+        <div class="testimonial">
+            <p class="testimonial-text">"I've tried a lot of AI newsletters and most just summarise news I already saw. PromptWire is the only one where I open it and immediately do something with it the same day."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">J</div>
+                <div>
+                    <div class="author-name">James R.</div>
+                    <div class="author-role">Operations consultant</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+const API_URL = '/api/subscribe';
+const AUTOMATION_ID = 'REPLACE_WITH_YOUR_AUTOMATION_ID';
+
+async function subscribe() {
+    const email = document.getElementById('heroEmail').value.trim();
+    const input = document.getElementById('heroEmail');
+    const btn = document.getElementById('heroBtn');
+
+    if (!email || !email.includes('@')) {
+        input.classList.add('error');
+        setTimeout(() => input.classList.remove('error'), 1500);
+        return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+
+    let eventId = null;
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, automation_id: AUTOMATION_ID })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (data.event_id) eventId = data.event_id;
+    } catch(e) { console.error(e); }
+
+    const eid = eventId ? '?eid=' + eventId + '&src=newsletter' : '?src=newsletter';
+    window.top.location.href = 'https://www.promptwireai.com/recommendations' + eid;
+}
+
+document.getElementById('heroEmail').addEventListener('keypress', e => {
+    if (e.key === 'Enter') subscribe();
+});
+</script>
+
+</body>
+</html>
