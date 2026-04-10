@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PromptWire — Free Weekly AI Newsletter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,700;1,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,700;1,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --blue: #1292eb;
@@ -13,6 +13,7 @@
             --blue-hover: #0d7fd4;
             --white: #ffffff;
             --gray-50: #f8f9fa;
+            --gray-100: #f1f3f5;
             --gray-200: #e9ecef;
             --gray-400: #adb5bd;
             --gray-500: #6c757d;
@@ -45,6 +46,7 @@
             pointer-events: none;
         }
 
+        /* ---- CARD ---- */
         .card {
             background: white;
             border-radius: 24px;
@@ -66,6 +68,7 @@
             border-radius: 24px 24px 0 0;
         }
 
+        /* ---- HEADER ---- */
         .card-badge {
             display: inline-flex;
             align-items: center;
@@ -92,12 +95,11 @@
 
         .card h1 {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(38px, 6vw, 54px);
+            font-size: clamp(36px, 6vw, 52px);
             font-weight: 800;
-            line-height: 0.96;
+            line-height: 1.0;
             color: var(--gray-900);
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
+            margin-bottom: 14px;
         }
 
         .card h1 span { color: var(--blue); }
@@ -106,14 +108,15 @@
             font-size: 15px;
             color: var(--gray-500);
             line-height: 1.7;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
+        /* ---- BULLETS ---- */
         .bullets {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 26px;
+            gap: 9px;
+            margin-bottom: 28px;
             padding: 20px;
             background: var(--gray-50);
             border-radius: 12px;
@@ -127,7 +130,6 @@
             font-size: 13px;
             color: var(--gray-700);
             font-weight: 500;
-            line-height: 1.4;
         }
 
         .bullet-icon {
@@ -137,6 +139,7 @@
             text-align: center;
         }
 
+        /* ---- FORM ---- */
         .form-input {
             width: 100%;
             padding: 14px 18px;
@@ -163,7 +166,7 @@
             border-radius: 10px;
             font-family: 'DM Sans', sans-serif;
             font-size: 15px;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             letter-spacing: 0.2px;
@@ -176,48 +179,17 @@
         }
 
         .form-trust {
-            margin-top: 11px;
+            margin-top: 12px;
             font-size: 12px;
             color: var(--gray-400);
             text-align: center;
         }
 
-        /* Social proof */
-        .social-proof {
-            margin-top: 26px;
-            padding-top: 22px;
+        /* ---- TESTIMONIAL ---- */
+        .testimonial {
+            margin-top: 28px;
+            padding-top: 24px;
             border-top: 1px solid var(--gray-200);
-        }
-
-        .proof-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 14px;
-        }
-
-        .avatar-stack { display: flex; }
-
-        .avatar {
-            width: 28px; height: 28px;
-            border-radius: 50%;
-            border: 2px solid white;
-            margin-left: -8px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .avatar:first-child { margin-left: 0; }
-        .av-1 { background: #dbeafe; color: #1d4ed8; }
-        .av-2 { background: #d1fae5; color: #065f46; }
-        .av-3 { background: #fce7f3; color: #9d174d; }
-        .av-4 { background: #fef3c7; color: #92400e; }
-
-        .proof-count {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--gray-700);
         }
 
         .testimonial-text {
@@ -225,7 +197,7 @@
             color: var(--gray-500);
             line-height: 1.65;
             font-style: italic;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .testimonial-author {
@@ -235,18 +207,22 @@
         }
 
         .author-avatar {
-            width: 28px; height: 28px;
+            width: 30px; height: 30px;
             border-radius: 50%;
             background: #dbeafe;
             color: #1d4ed8;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 11px; font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
             flex-shrink: 0;
         }
 
         .author-name { font-size: 12px; font-weight: 600; color: var(--gray-700); }
         .author-role { font-size: 11px; color: var(--gray-400); }
 
+        /* ---- ANIMATIONS ---- */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
@@ -254,8 +230,7 @@
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         @media (max-width: 480px) {
-            .card { padding: 36px 26px; }
-            .card h1 { font-size: 38px; }
+            .card { padding: 36px 28px; }
         }
     </style>
 </head>
@@ -270,13 +245,13 @@
 
         <h1>The AI newsletter<br>that <span>actually works.</span></h1>
 
-        <p class="card-desc">One email every Thursday. One ready-to-run AI workflow, the tools worth knowing about, and plain-English breakdowns of what is shifting in AI. Nothing else.</p>
+        <p class="card-desc">PromptWire lands every Thursday with one ready-to-run AI automation, the tools worth knowing about, and plain-English breakdowns of what's shifting in AI.</p>
 
         <div class="bullets">
-            <div class="bullet"><span class="bullet-icon">⚡</span>One complete AI workflow every Thursday. Copy it, run it that day.</div>
-            <div class="bullet"><span class="bullet-icon">🔧</span>New tools covered every week. Honest takes, no hype.</div>
-            <div class="bullet"><span class="bullet-icon">📡</span>AI briefings. What actually matters and what to do about it.</div>
-            <div class="bullet"><span class="bullet-icon">📚</span>Growing prompt library. Free and Pro tiers available.</div>
+            <div class="bullet"><span class="bullet-icon">⚡</span>One AI automation every Thursday. Copy it, run it that day</div>
+            <div class="bullet"><span class="bullet-icon">🔧</span>New tools covered weekly. Honest takes, no hype</div>
+            <div class="bullet"><span class="bullet-icon">📡</span>AI news briefings. What matters and what to do about it</div>
+            <div class="bullet"><span class="bullet-icon">📚</span>Growing prompt library. Free and Pro tiers</div>
         </div>
 
         <div id="formWrap">
@@ -287,22 +262,13 @@
             <p class="form-trust">✓ Free forever &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe anytime</p>
         </div>
 
-        <div class="social-proof">
-            <div class="proof-row">
-                <div class="avatar-stack">
-                    <div class="avatar av-1">J</div>
-                    <div class="avatar av-2">S</div>
-                    <div class="avatar av-3">E</div>
-                    <div class="avatar av-4">M</div>
-                </div>
-                <span class="proof-count">Joined by founders and operators</span>
-            </div>
-            <p class="testimonial-text">"I have tried a lot of AI newsletters and most just summarise news I already saw. PromptWire is the only one where I open it and immediately do something with it the same day."</p>
+        <div class="testimonial">
+            <p class="testimonial-text">"I've tried a lot of AI newsletters and most just summarise news I already saw. PromptWire is the only one where I open it and immediately do something with it the same day."</p>
             <div class="testimonial-author">
                 <div class="author-avatar">J</div>
                 <div>
                     <div class="author-name">James R.</div>
-                    <div class="author-role">Operations Consultant</div>
+                    <div class="author-role">Operations consultant</div>
                 </div>
             </div>
         </div>
