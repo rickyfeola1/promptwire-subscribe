@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptWire — Free Weekly AI Newsletter</title>
+    <title>PromptWire | Weekly AI Workflows You Can Run the Same Day</title>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,700;1,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -73,9 +73,9 @@
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            background: rgba(16,185,129,0.1);
-            border: 1px solid rgba(16,185,129,0.2);
-            color: var(--green);
+            background: var(--blue-dim);
+            border: 1px solid rgba(18,146,235,0.2);
+            color: var(--blue);
             font-size: 11px;
             font-weight: 700;
             padding: 5px 12px;
@@ -87,15 +87,17 @@
 
         .badge-dot {
             width: 6px; height: 6px;
-            background: var(--green);
+            background: var(--blue);
             border-radius: 50%;
             animation: pulse 2s infinite;
+            will-change: opacity, transform;
+            -webkit-transform: translateZ(0);
             flex-shrink: 0;
         }
 
         .card h1 {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(36px, 6vw, 52px);
+            font-size: clamp(34px, 6vw, 48px);
             font-weight: 800;
             line-height: 1.0;
             color: var(--gray-900);
@@ -103,12 +105,13 @@
         }
 
         .card h1 span { color: var(--blue); }
+        .card h1 em { color: rgba(0,0,0,0.2); font-style: italic; }
 
         .card-desc {
             font-size: 15px;
             color: var(--gray-500);
             line-height: 1.7;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         /* ---- BULLETS ---- */
@@ -116,8 +119,8 @@
             display: flex;
             flex-direction: column;
             gap: 9px;
-            margin-bottom: 28px;
-            padding: 20px;
+            margin-bottom: 26px;
+            padding: 18px;
             background: var(--gray-50);
             border-radius: 12px;
             border: 1px solid var(--gray-200);
@@ -125,18 +128,20 @@
 
         .bullet {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
             font-size: 13px;
             color: var(--gray-700);
             font-weight: 500;
+            line-height: 1.45;
         }
 
         .bullet-icon {
-            font-size: 15px;
+            font-size: 14px;
             flex-shrink: 0;
             width: 20px;
             text-align: center;
+            margin-top: 1px;
         }
 
         /* ---- FORM ---- */
@@ -187,8 +192,8 @@
 
         /* ---- TESTIMONIAL ---- */
         .testimonial {
-            margin-top: 28px;
-            padding-top: 24px;
+            margin-top: 24px;
+            padding-top: 22px;
             border-top: 1px solid var(--gray-200);
         }
 
@@ -227,7 +232,11 @@
             from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.85); }
+        }
 
         @media (max-width: 480px) {
             .card { padding: 36px 28px; }
@@ -243,27 +252,28 @@
             Free every Thursday
         </div>
 
-        <h1>The AI newsletter<br>that <span>actually works.</span></h1>
+        <h1>A new workflow <em>every week,</em><br><span>before most people</span><br>know it exists.</h1>
 
-        <p class="card-desc">PromptWire lands every Thursday with one ready-to-run AI automation, the tools worth knowing about, and plain-English breakdowns of what's shifting in AI.</p>
+        <p class="card-desc">Each issue starts with something people are still doing manually, then shows the new way to replace it. Built around what AI can do right now. Run it before the week is out.</p>
 
         <div class="bullets">
-            <div class="bullet"><span class="bullet-icon">⚡</span>One AI automation every Thursday. Copy it, run it that day</div>
-            <div class="bullet"><span class="bullet-icon">🔧</span>New tools covered weekly. Honest takes, no hype</div>
-            <div class="bullet"><span class="bullet-icon">📡</span>AI news briefings. What matters and what to do about it</div>
-            <div class="bullet"><span class="bullet-icon">📚</span>Growing prompt library. Free and Pro tiers</div>
+            <div class="bullet"><span class="bullet-icon">⚡</span>One new AI workflow every Thursday, built around what AI can do right now</div>
+            <div class="bullet"><span class="bullet-icon">🔁</span>The old way identified, the replacement shown, ready to run the same day</div>
+            <div class="bullet"><span class="bullet-icon">📡</span>The week in AI actually explained. What happened and what to do about it</div>
+            <div class="bullet"><span class="bullet-icon">🛠️</span>One tool worth knowing about each week, with an honest take</div>
+            <div class="bullet"><span class="bullet-icon">📚</span>70+ workflow library. Free selection included, Pro unlocks everything</div>
         </div>
 
         <div id="formWrap">
             <input type="email" class="form-input" id="heroEmail" placeholder="your@email.com">
             <button class="form-btn" id="heroBtn" onclick="subscribe()">
-                Join Free — Get This Week's Issue →
+                Subscribe Free →
             </button>
             <p class="form-trust">✓ Free forever &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe anytime</p>
         </div>
 
         <div class="testimonial">
-            <p class="testimonial-text">"I've tried a lot of AI newsletters and most just summarise news I already saw. PromptWire is the only one where I open it and immediately do something with it the same day."</p>
+            <p class="testimonial-text">"I have tried a lot of AI newsletters and most just summarise news I already saw. PromptWire is the only one where I open it and immediately do something with it the same day."</p>
             <div class="testimonial-author">
                 <div class="author-avatar">J</div>
                 <div>
