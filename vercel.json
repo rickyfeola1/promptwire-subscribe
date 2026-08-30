@@ -6,6 +6,10 @@
             "use": "@vercel/static"
         },
         {
+            "src": "promptwire-logo-transparent.png",
+            "use": "@vercel/static"
+        },
+        {
             "src": "subscribe.js",
             "use": "@vercel/node"
         }
@@ -14,6 +18,10 @@
         {
             "src": "/api/subscribe",
             "dest": "/subscribe.js"
+        },
+        {
+            "src": "/promptwire-logo-transparent.png",
+            "dest": "/promptwire-logo-transparent.png"
         },
         {
             "src": "/(.*)",
